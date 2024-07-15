@@ -1,0 +1,39 @@
+The FFHQ-Wrinkle dataset is provided under the same 
+Creative Commons BY-NC-SA 4.0 license as the original FFHQ dataset.
+You are free to use, redistribute, and adapt this dataset for 
+non-commercial purposes under the following conditions:
+
+1. Attribution: You must give appropriate credit, 
+provide a link to the license, and indicate if changes were made. 
+You may do so in any reasonable manner, but not in any way that 
+suggests the licensor endorses you or your use.
+2. Non-Commercial: You may not use the material for 
+commercial purposes.
+3. ShareAlike: If you remix, transform, or build upon 
+the material, you must distribute your contributions under 
+the same license as the original.
+
+By using the FFHQ-Wrinkle dataset, you agree to abide by 
+the terms of this license. For any further inquiries or requests 
+for commercial use, please contact the original creators of 
+the FFHQ dataset and the authors of the FFHQ-Wrinkle dataset.
+
+The individual images were published in Flickr by their 
+respective authors under either Creative Commons BY 2.0, 
+Creative Commons BY-NC 2.0, Public Domain Mark 1.0, 
+Public Domain CC0 1.0, or U.S. Government Works license. 
+All of these licenses allow free use, redistribution, and 
+adaptation for non-commercial purposes. However, some of 
+them require giving appropriate credit to the original author, 
+as well as indicating any changes that were made to 
+the images. The license and original author of each image are 
+indicated in the metadata.
+
+- https://creativecommons.org/licenses/by/2.0/
+- https://creativecommons.org/licenses/by-nc/2.0/
+- https://creativecommons.org/publicdomain/mark/1.0/
+- https://creativecommons.org/publicdomain/zero/1.0/
+- http://www.usa.gov/copyright.shtml
+
+Please refer to the original FFHQ Dataset website for 
+the license of the FFHQ dataset.
