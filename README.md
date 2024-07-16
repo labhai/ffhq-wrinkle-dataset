@@ -15,10 +15,9 @@ All data is hosted on Google Drive:
 
 | Path | Size | Files | Format | Description
 | :--- | :--: | ----: | :----: | :----------
-| [ffhq-wrinkle-dataset](https://drive.google.com/drive/folders/1nvZZNpCKSTAbktRasroMswZHRCH3iloN) | 7.02GB |  | | Main folder
+| [ffhq-wrinkle-dataset](https://drive.google.com/drive/folders/1nvZZNpCKSTAbktRasroMswZHRCH3iloN) | 6.95GB |  | | Main folder
 | &boxvr;&nbsp; manual-wrinkle-masks | 2.8MB | 1,000 | 8-bit Grayscale PNG (uint8) | Manually annotated wrinkle labels with a resolution of 1024x1024.
 | &boxvr;&nbsp; weak-wrinkle-masks | 6.94GB | 50,000 | 8-bit Grayscale PNG (uint8) | Automatically generated weak wrinkle labels with a resolution of 1024x1024.
-| &boxvr;&nbsp; face-images | 71.1MB | 55 | Truecolor 8-bit RGB PNG (uint8) | Includes face images for face extraction. (ID: 00001 ~ 00689)
 | &boxur;&nbsp; face-parsed-labels | 5.1MB | 1,000 | Numpy array (npy) | Includes face-parsed labels for face extraction.
 
 ## Usage
@@ -73,7 +72,7 @@ To follow the training strategy outlined in our paper, you should prepare the fa
 **Note**: To perform this task, the original face images from the [FFHQ Dataset](https://github.com/NVlabs/ffhq-dataset?tab=readme-ov-file#download-script) must be in the ```base_folder```.
 
 
-We provide face-parsed labels for the face images corresponding to the manual wrinkle labels as 512x512 numpy arrays, which were obtained using [face-parsing.PyTorch](https://github.com/zllrunning/face-parsing.PyTorch). Specifically, we mask all areas except for the face and the nose. Note that for manual labels with IDs 00001 to 00689, the alignment differs from the original FFHQ images, so the corresponding face images for these IDs are provided separately.
+We provide face-parsed labels for the face images corresponding to the manual wrinkle labels as 512x512 numpy arrays, which were obtained using [face-parsing.PyTorch](https://github.com/zllrunning/face-parsing.PyTorch). Specifically, we mask all areas except for the face and the nose.
 
 
 ## Licenses

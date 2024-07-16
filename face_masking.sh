@@ -2,7 +2,6 @@
 
 declare -A files=(
     ["https://drive.google.com/uc?id=1Oje4gsfgsScBfLMwP-OobgoFK-DHOGqc"]="face_parsed_labels.zip"
-    ["https://drive.google.com/uc?id=11cmnpuH1Tjinnq7aQqTNRrT4KytRIgUb"]="face_images.zip"
 )
 
 base_folder="./data" # edit to your desired path
@@ -37,8 +36,6 @@ for zip_file in "${files[@]}"; do
     rm "$extract_path"
     echo "Extracted and removed $zip_file into $etcs_folder/$extract_folder"
 done
-
-cp -r "$etcs_folder/face_images/." "$base_folder/face_images"
 
 echo "Starting face masking..."
 if python ./face_masking.py "$etcs_folder/face_parsed_labels" "$base_folder/face_images" "$base_folder/masked_face_images"; then
