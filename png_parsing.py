@@ -10,13 +10,6 @@ def copy_matching_files(ffhq_images, manual_masks, face_images):
     for root, _, files in os.walk(ffhq_images):
         for file in files:
             if file in files_in_manual_masks:
-                file_name_without_ext = os.path.splitext(file)[0]
-                try:
-                    file_number = int(file_name_without_ext)
-                    if 0 <= file_number < 1000:
-                        continue 
-                except ValueError:
-                    pass
                 matching_files.append((root, file))
     with tqdm(total=len(matching_files), desc="Copying files") as pbar:
         for root, file in matching_files:
