@@ -21,7 +21,7 @@ def copy_matching_files(ffhq_images, manual_masks, face_images):
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage: python png_parsing.py <ffhq_images> <manual_masks> <face_images>")
+        print("Usage: python png_parsing.py <ffhq_images_folder (ex. images1024x1024)> <manual_masks_folder (ex. manual_wrinkle_masks)> <output_face_images_folder (ex. face_images)>")
         sys.exit(1)
     ffhq_images = sys.argv[1]
     manual_masks = sys.argv[2]
