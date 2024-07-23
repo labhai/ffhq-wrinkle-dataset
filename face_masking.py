@@ -27,7 +27,7 @@ def process_npy_and_png(npy_directory, png_directory, output_directory):
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage: python script.py <npy_directory> <png_directory> <output_directory>")
+        print("Usage: python face_masking.py <face_parsed_npy_folder (ex. face_parsed_labels)> <face_images_folder (ex. face_images)> <output_masked_face_images_folder (ex. masked_face_images)>")
         sys.exit(1)
     npy_directory = sys.argv[1]
     png_directory = sys.argv[2]
