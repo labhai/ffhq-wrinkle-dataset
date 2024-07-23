@@ -113,8 +113,8 @@ bash face_masking.sh
 Alternatively, you can directly download the face-parsed labels from the [Google Drive link](https://drive.google.com/drive/folders/1nvZZNpCKSTAbktRasroMswZHRCH3iloN) and place them in the ```base_folder```. Then sequentially run ```png_parsing.py``` and ```face_masking.py```.
 
 ```bash
-python png_parsing.py <$base_folder/images1024x1024> <$base_folder/manual_wrinkle_masks> <$base_folder/face_images>
-python face_masking.py <$base_folder/face_parsed_labels> <$base_folder/face_images> <$base_folder/masked_face_images>
+python png_parsing.py $base_folder/images1024x1024 $base_folder/manual_wrinkle_masks $base_folder/face_images
+python face_masking.py $base_folder/face_parsed_labels $base_folder/face_images $base_folder/masked_face_images
 ```
 
 We provide face-parsed labels for the face images corresponding to the manual wrinkle labels as 512x512 numpy arrays, which were obtained using [face-parsing.PyTorch](https://github.com/zllrunning/face-parsing.PyTorch). Specifically, we mask all areas except for the face and the nose.
