@@ -1,7 +1,7 @@
 #!/bin/bash
 
 declare -A files=(
-    ["https://drive.google.com/uc?id=1QcexZsNp3xc_3HhCUgzN732RFMjFmD30"]="manual_wrinkle_masks.zip"
+    ["https://drive.google.com/uc?id=1vzbx847hq1hgKjMtMmxLzmzLrYb4t0QX"]="manual_wrinkle_masks.zip"
     ["https://drive.google.com/uc?id=1dLl7_ChsJNrZSQIbNGj21sm45hmH0ZxC"]="weak_wrinkle_masks.zip"
 )
 
