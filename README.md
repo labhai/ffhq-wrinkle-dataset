@@ -13,6 +13,10 @@ If you use this dataset for your research, please cite our paper:
 
 The first public facial wrinkle dataset, ‘FFHQ-Wrinkle’, comprises pairs of face images and their corresponding wrinkle masks. We focused on wrinkle labels while utilizing the existing high-resolution face image dataset [FFHQ (Flickr-Faces-HQ)](https://github.com/NVlabs/ffhq-dataset), which contains 70,000 high-resolution (1024x1024) face images captured under various angles and lighting conditions. The dataset we provide consists of one set of manually labeled wrinkle masks (N=1,000) and one set of "weak" wrinkle masks, or masked texture maps, generated without human labor (N=50,000). We selected 50,000 images from the FFHQ dataset, specifically image IDs 00000 to 49999. We used these 50,000 face images to create the weakly labeled wrinkles and randomly sampled 1,000 images from these to create the ground truth wrinkles.
 
+## News
+- **[2025.05.02]** Release [pretrained weights (U-Net, SwinUNETR)](https://drive.google.com/drive/folders/1Z4EagkkhdIGxDjYrxM7Gkr6sfpvXUUTs) and [inference code](#inference).
+- **[2024.07.16]** Release dataset.
+
 ## Licenses
 The FFHQ-Wrinkle dataset is provided under the same [Creative Commons BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) license as the original FFHQ dataset.
 You are free to use, redistribute, and adapt this dataset for non-commercial purposes under the following conditions:
@@ -196,6 +200,98 @@ The folder structure after the instructions is as follows:
         └── 49999.png
 ```
 
+## Inference
+
+We provide pretrained checkpoints from both **stage1 (texture map pretraining)** and **stage2 (wrinkle finetuning)**. For actual wrinkle segmentation inference, please use the **stage2** checkpoints:
+
+- `stage2_wrinkle_finetune_swinunetr/stage2_swinunetr.pth`
+- `stage2_wrinkle_finetune_unet/stage2_unet.pth`
+
+Additionally, we provide a simple [test_file_lists.txt](test_file_lists.txt) file that lists the image IDs used during our internal evaluation. You can reference this list to replicate our testing setup.
+
+Download and unzip the checkpoints from [here](https://drive.google.com/drive/folders/1Z4EagkkhdIGxDjYrxM7Gkr6sfpvXUUTs), then place them in a folder of your choice (for example, `{base_folder}/pretrained_ckpt/`). Inference can be performed with either U-Net or SwinUNETR using the `inference.py` script.
+
+### 1. Install Dependencies
+Ensure you have Python 3.9+ and a CUDA-enabled GPU (if you wish to run on GPU). Then install all requirements:
+
+```bash
+conda create -n ffhqwrinkle python=3.9 -y
+conda activate ffhqwrinkle
+pip install -r requirements.txt
+```
+
+### 2. Prepare Data
+You need:
+1. Masked face images (RGB): e.g., `{base_folder}/masked_face_images/00001.png`
+2. Texture maps (Grayscale): e.g., `{base_folder}/weak_wrinkle_masks/00001.png`
+
+Ensure they share the same filenames so the script can match them automatically. You can place them in any folder structure, but the `inference.py` script expects:
+
+- `--image_path` pointing to either a single masked face image file or a directory of masked face images (RGB).
+
+- `--texture_path` pointing to either a single texture map file or a directory of texture maps (Grayscale).
+
+### 3. Run Inference
+Use the provided `inference.py` script to generate wrinkle segmentation masks. Below are some examples:
+
+#### Inference on a directory of images
+If you have a folder containing masked face images (e.g., `{base_folder}/masked_face_images/`) and a folder with the corresponding texture maps (e.g., `{base_folder}/weak_wrinkle_masks/`), you can run:
+
+```bash
+python inference.py \
+    --image_path {base_folder}/masked_face_images \
+    --texture_path {base_folder}/weak_wrinkle_masks \
+    --network UNet \
+    --num_channels 4 \
+    --num_classes 2 \
+    --checkpoint {base_folder}/pretrained_ckpt/stage2_wrinkle_finetune_unet/stage2_unet.pth \
+    --gpu_id 0 \
+    --img_size 1024 \
+    --output_dir {base_folder}/test_outputs
+```
+
+For SwinUNETR, simply change `--network` and the checkpoint path:
+
+```bash
+python inference.py \
+    --image_path {base_folder}/masked_face_images \
+    --texture_path {base_folder}/weak_wrinkle_masks \
+    --network SwinUNETR \
+    --num_channels 4 \
+    --num_classes 2 \
+    --checkpoint {base_folder}/pretrained_ckpt/stage2_wrinkle_finetune_swinunetr/stage2_swinunetr.pth \
+    --gpu_id 0 \
+    --img_size 1024 \
+    --output_dir {base_folder}/test_outputs
+```
+
+#### Inference on a single image
+You can also specify a single file for `--image_path` and `--texture_path`. For example:
+
+```bash
+python inference.py \
+    --image_path {base_folder}/masked_face_images/00001.png \
+    --texture_path {base_folder}/weak_wrinkle_masks/00001.png \
+    --network UNet \
+    --num_channels 4 \
+    --num_classes 2 \
+    --checkpoint {base_folder}/pretrained_ckpt/stage2_wrinkle_finetune_unet/stage2_unet.pth \
+    --gpu_id 0 \
+    --img_size 1024 \
+    --output_dir {base_folder}/test_outputs
+```
+
+In this case, only the specified file(s) will be processed.
+
+### Notes
+- The script will match filenames between the image folder and the texture folder. Make sure the filenames are identical (e.g., `00001.png` in both).
+- The script outputs segmented mask images to the specified `--output_dir` with `_mask` appended to the filename.
+- `--gpu_id 0` uses the first available GPU; if no GPU is detected, it automatically runs on CPU.
+- Adjust `--img_size` if your images differ from 1024x1024, or if you want to resize them before inference. (We strongly recommend setting the image size used for inference to 1024×1024.)
+- If the script reports any file not found, please verify that the file structure and filenames match appropriately.
+
+
 ## Todos
-* [ ] Publish pre-trained model (U-Net, SwinUNETR) weights.
+* [x] Publish pre-trained model (U-Net, SwinUNETR) weights.
+* [x] Publish inference codes.
 * [ ] Publish training codes.

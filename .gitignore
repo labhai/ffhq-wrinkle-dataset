@@ -1,0 +1,10 @@
+*.pyc
+__pycache__/
+checkpoints/
+pretrained_ckpt/
+*.pth
+*.jpg
+venv/
+.idea/
+scripts/
+outputs/
