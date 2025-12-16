@@ -5,11 +5,10 @@ FFHQ-Wrinkle is an extension of the [FFHQ (Flickr-Faces-HQ)](https://github.com/
 
 If you use this dataset for your research, please cite our paper:
 
-> **Facial Wrinkle Segmentation for Cosmetic Dermatology: Pretraining with Texture Map-Based Weak Supervision**<br>
-> https://arxiv.org/abs/2408.10060<br>
+> [**Facial Wrinkle Segmentation for Cosmetic Dermatology: Pretraining with Texture Map-Based Weak Supervision**](https://link.springer.com/chapter/10.1007/978-3-031-78104-9_22)<br>
 > Junho Moon, Haejun Chung, Ikbeom Jang<br>
 > ICPR 2024<br>
-
+> ([arXiv ver](https://arxiv.org/abs/2408.10060))
 
 The first public facial wrinkle dataset, ‘FFHQ-Wrinkle’, comprises pairs of face images and their corresponding wrinkle masks. We focused on wrinkle labels while utilizing the existing high-resolution face image dataset [FFHQ (Flickr-Faces-HQ)](https://github.com/NVlabs/ffhq-dataset), which contains 70,000 high-resolution (1024x1024) face images captured under various angles and lighting conditions. The dataset we provide consists of one set of manually labeled wrinkle masks (N=1,000) and one set of "weak" wrinkle masks, or masked texture maps, generated without human labor (N=50,000). We selected 50,000 images from the FFHQ dataset, specifically image IDs 00000 to 49999. We used these 50,000 face images to create the weakly labeled wrinkles and randomly sampled 1,000 images from these to create the ground truth wrinkles.
 
@@ -291,7 +290,21 @@ In this case, only the specified file(s) will be processed.
 - If the script reports any file not found, please verify that the file structure and filenames match appropriately.
 
 
+### BibTex (to cite our paper)
+```bash
+@inproceedings{moon2024facial,
+  title={Facial wrinkle segmentation for cosmetic dermatology: Pretraining with texture map-based weak supervision},
+  author={Moon, Junho and Chung, Haejun and Jang, Ikbeom},
+  booktitle={International Conference on Pattern Recognition},
+  pages={319--334},
+  year={2024},
+  organization={Springer}
+}
+```
+
 ## Todos
 * [x] Publish pre-trained model (U-Net, SwinUNETR) weights.
 * [x] Publish inference codes.
 * [ ] Publish training codes.
+
+
